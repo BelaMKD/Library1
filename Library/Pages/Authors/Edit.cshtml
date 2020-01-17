@@ -1,0 +1,43 @@
+﻿@page
+@model Library.Pages.Authors.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@if (Model.Author.Id != 0)
+{
+    <h1 class="text-center" style="margin:0 auto 4% auto">Edditing @Model.Author.FullName</h1>
+}
+else
+{
+    <h1 class="text-center" style="margin:0 auto 4% auto">Add New Book</h1>
+
+}
+
+<form method="post" class="row">
+    <input type="hidden" asp-for="@Model.Author.Id" />
+    <div class="form-group col-sm-6">
+        <label asp-for="Author.FirstName"></label>
+        <input class="form-control" asp-for="Author.FirstName" type="text">
+        <span class="text-danger" asp-validation-for="Author.FirstName"></span>
+    </div>
+    <div class="form-group col-sm-6">
+        <label asp-for="Author.LastName"></label>
+        <input class="form-control" asp-for="Author.LastName" type="text">
+        <span class="text-danger" asp-validation-for="Author.LastName"></span>
+    </div>
+    <div class="form-group col-sm-6">
+        <label asp-for="Author.Description"></label>
+        <textarea class="form-control" asp-for="Author.Description" rows="3"></textarea>
+    </div>
+    <div class="form-group col-sm-6">
+        <label asp-for="Author.NumberOfBooks"></label>
+        <input class="form-control" asp-for="Author.NumberOfBooks" />
+        <span class="text-danger" asp-validation-for="Author.NumberOfBooks"></span>
+    </div>
+    <div class="col-sm-12">
+        <button class="btn btn-info" type="submit">Save</button>
+        <a class="btn btn-primary" asp-page="/Books/ListBooks">Back</a>
+    </div>
+</form>
+

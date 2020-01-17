@@ -1,0 +1,27 @@
+﻿@page "{Id:int}"
+@model Library.Pages.Authors.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    var imgPath = "~/images/" + Model.Author.ImgPath;
+}
+
+
+    <div class="row">
+        <div class="col-sm-8">
+            <img src="@imgPath" class="card-img" alt="@Model.Author.FirstName @Model.Author.LastName" asp-append-version="true" style="height:890px;">
+        </div>
+
+      
+        <div class="card text-white bg-secondary col-sm-4 text-justify" >
+            <div class="card-header">@Model.Author.FirstName @Model.Author.LastName</div>
+            <div class="card-body d-flex flex-column justify-content-around">
+                <h5 class="card-title">Number of books: @Model.Author.NumberOfBooks</h5>
+                <p class="card-text">@Model.Author.Description</p>
+                <a class="btn btn-primary " asp-page="/Authors/ListAuthors">List Of Authors</a>
+                <a class="btn btn-primary " asp-page="/Books/ListBooks">List Of Books</a>
+
+            </div>
+        </div>
+    </div>
+
+

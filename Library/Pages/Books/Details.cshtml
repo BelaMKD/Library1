@@ -1,0 +1,37 @@
+﻿@page "{Id:int}"
+@model Library.Pages.Books.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+    var imgPath = "~/images/" + (Model.Book.ImgPath ?? "noimage.png");
+}
+<div class="text-center row">
+    <div class="col-sm-3" style="margin-top:30%;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Written by:</h5>
+                <p class="card-text">@Model.Book.Author.FullName</p>
+                <a class="btn btn-primary" style="margin-right:5px;" asp-page="/Authors/Details" asp-route-Id="@Model.Book.Author.Id">More about author</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5">
+
+        <h1 style="margin:0 auto 4% auto">@Model.Book.Title</h1>
+        <img src="@imgPath" class="img-fluid" alt="Responsive image" asp-append-version="true" style="height:680px;">
+    </div>
+    <div class="col-sm-3" style="margin-top:30%;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Number of pages:</h5>
+                <p class="card-text">@Model.Book.NumberOfPages</p>
+                <a class="btn btn-primary" asp-page="/Books/ListBooks">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+.
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info" style="margin-top:5%;">@Model.Message</div>
+}

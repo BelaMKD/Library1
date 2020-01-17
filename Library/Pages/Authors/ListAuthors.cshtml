@@ -1,0 +1,27 @@
+﻿@page
+@model Library.Pages.Authors.ListAuthorsModel
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<h1 class="text-center" style="margin:0 auto 4% auto">List Of Authors</h1>
+<div class="row">
+    @foreach (var author in Model.Authors)
+    {
+            var imgPath = "~/images/" + (author.ImgPath ?? "noimage.png");
+
+        <div class="card col-sm-4">
+            <img src="@imgPath" class="" alt="@author.FirstName @author.LastName" asp-append-version="true" style="height:510px;">
+            <div class="card-body text-center">
+                <h5 class="card-title">@author.FirstName @author.LastName</h5>
+                <p class="card-text">Number of books: @author.NumberOfBooks</p>
+                <a class="btn btn-primary" asp-page="/Authors/Details" asp-route-Id="@author.Id">Read More</a>
+                <a class="btn btn-danger" asp-page="/Authors/Edit" asp-route-id="@author.Id">Edit</a>
+            </div>
+        </div>
+
+    }
+<div class="col-sm-12">
+    <a class="btn btn-success" asp-page="/Authors/Edit">Add New Author</a>
+</div>
+</div>

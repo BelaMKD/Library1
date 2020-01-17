@@ -1,0 +1,65 @@
+﻿@page
+@model Library.Pages.Books.ListBooksModel
+@{
+    ViewData["Title"] = "ListBooks";
+    var number = 1;
+
+}
+
+<h1 class="text-center" style="margin:0 auto 4% auto">List Of Books</h1>
+
+<form method="get">
+    <div class="input-group mb-3">
+        <input type="search" class="form-control" placeholder="Search By Title" asp-for="@Model.SearchTitle">
+        <div class="input-group-append">
+
+        </div>
+        <input type="search" class="form-control" placeholder="Search By Author" asp-for="@Model.SearchAuthor">
+        <div class="input-group-append">
+
+        </div>
+        <button class="btn btn-outline-secondary">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+</form>
+@if (Model.Books.Count()==0)
+{
+    <h4 class="text-danger">Not found!</h4>
+
+}
+else
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"><strong>#</strong></th>
+                <th scope="col">Title</th>
+                <th scope="col">Pages</th>
+                <th scope="col">Author</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Books)
+            {
+                <tr>
+                    <td><strong>@number</strong></td>
+                    <td>@book.Title</td>
+                    <td>@book.NumberOfPages</td>
+                    <td>@book.Author.FullName</td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="/Books/Details" asp-route-Id="@book.Id">Read More</a>
+                        <a class="btn btn-info" asp-page="/Books/Edit" asp-route-Id="@book.Id">Edit</a>
+                    </td>
+                </tr>
+                number++;
+            }
+        </tbody>
+    </table>
+}
+
+
+<a class="btn btn-info" asp-page="/Books/Edit">Add Book</a>
+
+

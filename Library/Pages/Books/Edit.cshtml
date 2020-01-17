@@ -1,0 +1,46 @@
+﻿@page "{Id:int?}"
+@model Library.Pages.Books.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@if (Model.Book.Id != 0)
+{
+    <h1 class="text-center" style="margin:0 auto 4% auto">Edditing @Model.Book.Title</h1>
+}
+else
+{
+    <h1 class="text-center" style="margin:0 auto 4% auto">Add New Book</h1>
+
+}
+
+<form method="post" class="row">
+    <input type="hidden" asp-for="@Model.Book.Id" />
+    <div class="form-group col-sm-6">
+        <label asp-for="Book.Title"></label>
+        <input class="form-control" asp-for="Book.Title" type="text">
+        <span class="text-danger" asp-validation-for="Book.Title"></span>
+    </div>
+    <div class="form-group col-sm-6">
+        <label asp-for="Book.Author.FullName"></label>
+        <select asp-for="Book.AuthorId" asp-items="@Model.FullNames" class="form-control"></select>
+    </div>
+    <div class="form-group col-sm-6">
+        <label asp-for="Book.NumberOfPages"></label>
+        <input class="form-control" asp-for="Book.NumberOfPages" />
+        <span class="text-danger" asp-validation-for="Book.NumberOfPages"></span>
+    </div>
+    @*<div class="form-group col-sm-6">
+            <label asp-for="Author.NumberOfBooks"></label>
+            <input class="form-control" asp-for="Author.NumberOfBooks" />
+            <span class="text-danger" asp-validation-for="Author.NumberOfBooks"></span>
+        </div>*@
+    <div class="col-sm-12">
+        <button class="btn btn-info" type="submit">Save</button>
+        <a class="btn btn-primary" asp-page="/Books/ListBooks">Back</a>
+    </div>
+</form>
+<div class="row d-flex justify-content-center align-content-center">
+    <img src="~/images/books.jpeg" class="img-fluid" alt="Responsive image">
+</div>
+
